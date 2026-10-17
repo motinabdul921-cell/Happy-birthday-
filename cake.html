@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Wish! 🎂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Nav */
+        .header-nav {
+            position: absolute;
+            top: 20px;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #d7ccc8;
+            z-index: 10;
+        }
+
+        /* Floating Happy Birthday Marjana Background Text Animation */
+        .floating-bg-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .floating-text {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.65);
+            font-family: 'Great Vibes', cursive;
+            font-size: 34px;
+            white-space: nowrap;
+            animation: floatUp 9s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(-10deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .cake-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            padding: 35px 50px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.15);
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #ffd700;
+            font-size: 32px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #f0f0f0;
+            font-size: 15px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Gorgeous Cake Design */
+        .cake {
+            position: relative;
+            width: 260px;
+            height: 200px;
+            margin: 0 auto 25px auto;
+        }
+
+        .plate {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 18px;
+            background: linear-gradient(90deg, #b8b8b8, #ffffff, #b8b8b8);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 12px;
+        }
+
+        .layer-bottom {
+            bottom: 18px;
+            width: 240px;
+            height: 60px;
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            box-shadow: inset 0 8px 12px rgba(255,255,255,0.3), 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .layer-middle {
+            bottom: 78px;
+            width: 180px;
+            height: 55px;
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            box-shadow: inset 0 8px 12px rgba(255,255,255,0.3), 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .layer-top {
+            bottom: 133px;
+            width: 120px;
+            height: 45px;
+            background: linear-gradient(135deg, #3f51b5, #303f9f);
+            box-shadow: inset 0 8px 12px rgba(255,255,255,0.3), 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .icing {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 15px;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        /* 4 Candles Container */
+        .candles-box {
+            position: absolute;
+            bottom: 178px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 10;
+        }
+
+        .candle {
+            position: relative;
+            width: 10px;
+            height: 40px;
+            background: repeating-linear-gradient(45deg, #ffeb3b, #ffeb3b 6px, #f44336 6px, #f44336 12px);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Flame styling */
+        .flame {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 18px;
+            background: #ff9800;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 12px #ff5722, 0 0 20px #ffeb3b;
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        .flame.off {
+            display: none !important;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.15) rotate(2deg); opacity: 1; }
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #111;
+            font-weight: 700;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            display: none;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+
+    <!-- Floating Background Text Area -->
+    <div class="floating-bg-text" id="floatingBg"></div>
+
+    <div class="cake-container">
+        <h1>WELCOME TO 18TH BIRTHDAY</h1>
+       <div class="subtitle">WISHING YOU A LIFETIME OF HAPPINESS AND SUCCESS, MY FAV BESTFRIEND ❤️</div>
+        <!-- Cake with 4 Candles -->
+        <div class="cake">
+            <div class="plate"></div>
+            
+            <div class="layer layer-bottom"><div class="icing"></div></div>
+            <div class="layer layer-middle"><div class="icing"></div></div>
+            <div class="layer layer-top"><div class="icing"></div></div>
+
+            <!-- 4 Candles -->
+            <div class="candles-box" onclick="blowCandles()">
+                <div class="candle"><div class="flame" id="flame1"></div></div>
+                <div class="candle"><div class="flame" id="flame2"></div></div>
+                <div class="candle"><div class="flame" id="flame3"></div></div>
+                <div class="candle"><div class="flame" id="flame4"></div></div>
+            </div>
+        </div>
+
+        <button id="blowBtn" class="btn" onclick="blowCandles()">Blow the Candle! 💨</button>
+        <button id="nextBtn" class="btn next-btn" onclick="goToFireworks()">Now Celebrate! 🎉</button>
+    </div>
+
+    <script>
+        // Generating random floating background text
+        const bgContainer = document.getElementById('floatingBg');
+        const phrases = [
+            "Happy Birthday to You Dear Marjana ✨", 
+            "🎂 Happy Birthday Marjana 💖", 
+            "✨ Wishing You The Best, Marjana! 🌟", 
+            "🎉 Happy Birthday to You Dear Marjana 👑"
+        ];
+
+        for (let i = 0; i < 20; i++) {
+            let span = document.createElement('span');
+            span.className = 'floating-text';
+            span.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+            span.style.left = Math.random() * 85 + 'vw';
+            span.style.top = Math.random() * 90 + 'vh';
+            span.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            span.style.animationDelay = (Math.random() * 5) + 's';
+            bgContainer.appendChild(span);
+        }
+
+        // Blow Candles Logic & Smoke Effect
+        function blowCandles() {
+            const flames = [
+                document.getElementById('flame1'),
+                document.getElementById('flame2'),
+                document.getElementById('flame3'),
+                document.getElementById('flame4')
+            ];
+
+            flames.forEach(flame => {
+                if (flame) flame.classList.add('off');
+            });
+
+            document.getElementById('blowBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        // Navigate to Fireworks page
+        function goToFireworks() {
+            window.location.href = "fireworks.html";
+        }
+
+        // Audio Preservation across pages
+        window.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('bgMusic');
+            const savedTime = localStorage.getItem('audioTime');
+
+            if (music) {
+                if (savedTime) {
+                    music.currentTime = parseFloat(savedTime);                                            
+                }
+                music.play().catch(() => {});
+
+                music.ontimeupdate = () => {
+                    localStorage.setItem('audioTime', music.currentTime);
+                };
+            }
+        });
+    </script>
+</body>
+</html>
